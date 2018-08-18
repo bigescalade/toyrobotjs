@@ -13,5 +13,8 @@
   "bugs": {
     "url": "https://github.com/bigescalade/toyrobotjs/issues"
   },
-  "homepage": "https://github.com/bigescalade/toyrobotjs#readme"
+  "homepage": "https://github.com/bigescalade/toyrobotjs#readme",
+  "dependencies": {
+    "colors": "^1.3.1"
+  }
 }
