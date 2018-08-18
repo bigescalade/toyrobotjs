@@ -1,0 +1,17 @@
+{
+  "name": "toyrobotjs",
+  "version": "1.0.0",
+  "description": "toy robot simulator",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bigescalade/toyrobotjs.git"
+  },
+  "author": "rob cunning",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bigescalade/toyrobotjs/issues"
+  },
+  "homepage": "https://github.com/bigescalade/toyrobotjs#readme"
+}
