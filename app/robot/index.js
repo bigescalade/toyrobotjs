@@ -84,6 +84,7 @@ function Robot() {
    */
   self.left = () => {
     if (!self._hasPlaced()) {
+      self._error('You must place me on the table before I can turn left.');
       return false;
     }
 
@@ -97,6 +98,7 @@ function Robot() {
    */
   self.right = () => {
     if (!self._hasPlaced()) {
+      self._error('You must place me on the table before I can turn right.');
       return false;
     }
 
@@ -110,7 +112,8 @@ function Robot() {
    */
   self.move = () => {
     if (!self._hasPlaced()) {
-      return;
+      self._error('You must place me on the table before I can move.');
+      return false;
     }
 
     const newPosX = self.posX + DIRECTIONS[self.facing].x;
