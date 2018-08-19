@@ -77,6 +77,32 @@ function Robot() {
     return true;
   };
 
+  /**
+   * Turn the robot 90 degress to the left
+   * @return {Boolean} - Returns true if the robot turned
+   */
+  self.left = () => {
+    if (!self._hasPlaced()) {
+      return false;
+    }
+
+    self.facing = DIRECTIONS[self.facing].left;
+    return true;
+  };
+
+  /**
+   * Turn the robot 90 degress to the right
+   * @return {Boolean} - Returns true if the robot turned
+   */
+  self.right = () => {
+    if (!self._hasPlaced()) {
+      return false;
+    }
+
+    self.facing = DIRECTIONS[self.facing].right;
+    return true;
+  };
+
   // Report the current position of the robot
   self.report = () => {
     if (!self._hasPlaced()) {
