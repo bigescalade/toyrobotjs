@@ -55,6 +55,7 @@ function Robot() {
    * @return {Boolean} - Returns true if the robot was placed
    */
   self.place = (posX, posY, facing) => {
+    facing = facing.toUpperCase();
     if (!self._validatePosition(posX, posY)) {
       self._error(
         'You cannot place me off the table, type "help" to see the tables dimensions'
@@ -103,6 +104,31 @@ function Robot() {
     return true;
   };
 
+  /**
+   * Moves the robot 1 unit in the direction its facing
+   * @return {Boolean} - Returns true if the robot moved
+   */
+  self.move = () => {
+    if (!self._hasPlaced()) {
+      return;
+    }
+
+    const newPosX = self.posX + DIRECTIONS[self.facing].x;
+    const newPosY = self.posY + DIRECTIONS[self.facing].y;
+
+    if (!self._validatePosition(newPosX, newPosY)) {
+      self._error(
+        "I cannot move there, I would fall off! I'm too expensive to break."
+      );
+      return false;
+    }
+
+    self.posX = newPosX;
+    self.posY = newPosY;
+
+    return true;
+  };
+
   // Report the current position of the robot
   self.report = () => {
     if (!self._hasPlaced()) {
@@ -137,6 +163,15 @@ function Robot() {
     console.log(
       colors[color].underline('TOY ROBOT SAYS: Beep boop - ' + message)
     );
+  };
+
+  self.off = () => {
+    self._speak(
+      'yellow',
+      'The robot smiles at you',
+      'Thanks for playing, bye for now!'
+    );
+    process.exit(0);
   };
 
   /**

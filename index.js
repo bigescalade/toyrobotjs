@@ -70,8 +70,12 @@ const help = () => {
   console.log(
     colors.cyan('REPORT') +
       colors.yellow(
-        ' - (announce the X,Y and F (facing direction) of the robot)\n'
+        ' - (announce the X,Y and F (facing direction) of the robot)'
       )
+  );
+  console.log(
+    colors.cyan('OFF   ') +
+      colors.yellow(' - (turns the robot off (exits the node process))\n')
   );
 };
 
