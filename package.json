@@ -4,6 +4,7 @@
   "description": "toy robot simulator",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "node_modules/mocha/bin/mocha --reporter Spec app/**/*-test.js"
   },
   "repository": {
