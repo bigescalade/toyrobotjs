@@ -1,35 +1,36 @@
-const Robot = require('../index');
-const sinon = require('sinon');
+/* eslint-env node, mocha */
+
 const should = require('should');
+const Robot = require('../index');
 
 describe('Robot: example', () => {
-  it('should give expected output of: 0,1,NORTH', function(done) {
+  it('should give expected output of: 0,1,NORTH', (done) => {
     const robot = new Robot();
     robot.place('0', '0', 'NORTH');
     robot.move();
     robot.report();
 
-    robot.facing.should.equal('NORTH');
-    robot.posY.should.equal(1);
-    robot.posX.should.equal(0);
+    should(robot.facing).equal('NORTH');
+    should(robot.posY).equal(1);
+    should(robot.posX).equal(0);
 
     done();
   });
 
-  it('should give expected output of: 0,0,WEST', function(done) {
+  it('should give expected output of: 0,0,WEST', (done) => {
     const robot = new Robot();
     robot.place('0', '0', 'NORTH');
     robot.left();
     robot.report();
 
-    robot.facing.should.equal('WEST');
-    robot.posY.should.equal(0);
-    robot.posX.should.equal(0);
+    should(robot.facing).equal('WEST');
+    should(robot.posY).equal(0);
+    should(robot.posX).equal(0);
 
     done();
   });
 
-  it('should give expected output of: 3,3,NORTH', function(done) {
+  it('should give expected output of: 3,3,NORTH', (done) => {
     const robot = new Robot();
     robot.place('1', '2', 'EAST');
     robot.move();
@@ -38,9 +39,9 @@ describe('Robot: example', () => {
     robot.move();
     robot.report();
 
-    robot.facing.should.equal('NORTH');
-    robot.posY.should.equal(3);
-    robot.posX.should.equal(3);
+    should(robot.facing).equal('NORTH');
+    should(robot.posY).equal(3);
+    should(robot.posX).equal(3);
 
     done();
   });

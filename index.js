@@ -1,12 +1,11 @@
-let colors = require('colors/safe');
-let figlet = require('figlet');
-let inquirer = require('inquirer');
+const colors = require('colors/safe');
+const figlet = require('figlet');
+const inquirer = require('inquirer');
+const Robot = require('./app/robot');
 
-let Robot = require('./app/robot');
-var robot = new Robot();
+const robot = new Robot();
 
-const tableString =
-  '|---|---|---|---|---|\n\
+const tableString = '|---|---|---|---|---|\n\
 |0,4|1,4|2,4|3,4|4,4|\n\
 |---|---|---|---|---|\n\
 |0,3|1,3|2,3|3,3|4,3|\n\
@@ -27,72 +26,61 @@ const questions = [
   {
     type: 'input',
     name: 'command',
-    message: 'Please input a command, or type "help" for instructions'
-  }
+    message: 'Please input a command, or type "help" for instructions',
+  },
 ];
 
 const help = () => {
   console.log(
-    colors.yellow(
-      '\nStart by placing a robot on the table by using the following command:'
-    )
+    colors.yellow('\nStart by placing a robot on the table by using the following command:'),
   );
   console.log(colors.yellow('PLACE X,Y,F (facing direction) - for example:'));
   console.log(colors.cyan('PLACE 0,3,NORTH'));
-  console.log(
-    colors.magenta('The robot can only face NORTH, SOUTH, EAST or WEST')
-  );
+  console.log(colors.magenta('The robot can only face NORTH, SOUTH, EAST or WEST'));
   console.log(colors.magenta('The table is a 5 x 5 grid'));
   console.log(colors.magenta(tableString));
+  console.log(colors.yellow('\nThen use the following commands to interact with the robot:'));
   console.log(
-    colors.yellow(
-      '\nThen use the following commands to interact with the robot:'
-    )
+    colors.cyan('MOVE  ')
+      + colors.yellow(
+        ' - (move the toy robot one unit forward in the direction it is currently facing)',
+      ),
   );
   console.log(
-    colors.cyan('MOVE  ') +
-      colors.yellow(
-        ' - (move the toy robot one unit forward in the direction it is currently facing)'
-      )
+    colors.cyan('LEFT  ')
+      + colors.yellow(
+        ' - (rotate the robot 90 degrees to the left without changing the position of the robot)',
+      ),
   );
   console.log(
-    colors.cyan('LEFT  ') +
-      colors.yellow(
-        ' - (rotate the robot 90 degrees to the left without changing the position of the robot)'
-      )
+    colors.cyan('RIGHT ')
+      + colors.yellow(
+        ' - (rotate the robot 90 degrees to the right without changing the position of the robot)',
+      ),
   );
   console.log(
-    colors.cyan('RIGHT ') +
-      colors.yellow(
-        ' - (rotate the robot 90 degrees to the right without changing the position of the robot)'
-      )
+    colors.cyan('REPORT')
+      + colors.yellow(' - (announce the X,Y and F (facing direction) of the robot)'),
   );
   console.log(
-    colors.cyan('REPORT') +
-      colors.yellow(
-        ' - (announce the X,Y and F (facing direction) of the robot)'
-      )
-  );
-  console.log(
-    colors.cyan('OFF   ') +
-      colors.yellow(' - (turns the robot off (exits the node process))\n')
+    colors.cyan('OFF   ') + colors.yellow(' - (turns the robot off (exits the node process))\n'),
   );
 };
 
 // Using inquirer to ask the user questions and handle users answers
 function prompt() {
-  inquirer.prompt(questions).then(answers => {
+  inquirer.prompt(questions).then((answers) => {
     if (answers.command.toLowerCase() === 'help') {
       help();
       return prompt();
     }
 
-    var command = answers.command.split(' ');
-    var arguments = command[1] ? command[1].split(',') : [];
+    const command = answers.command.split(' ');
+    const args = command[1] ? command[1].split(',') : [];
 
-    robot.command(command[0], arguments);
+    robot.command(command[0], args);
 
-    prompt();
+    return prompt();
   });
 }
 
