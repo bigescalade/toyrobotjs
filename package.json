@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "toy robot simulator",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "node_modules/mocha/bin/mocha --reporter Spec app/**/*-test.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bigescalade/toyrobotjs.git"
