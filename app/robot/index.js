@@ -1,6 +1,6 @@
-let colors = require('colors/safe');
+const colors = require('colors/safe');
 
-let TABLE_DIMENSIONS = [5, 5];
+const TABLE_DIMENSIONS = [5, 5];
 /*
 Grid reference of the table
 |---|---|---|---|---|
@@ -16,11 +16,31 @@ Grid reference of the table
 |---|---|---|---|---|
 */
 
-let DIRECTIONS = {
-  NORTH: { x: 0, y: 1, left: 'WEST', right: 'EAST' },
-  EAST: { x: 1, y: 0, left: 'NORTH', right: 'SOUTH' },
-  SOUTH: { x: 0, y: -1, left: 'EAST', right: 'WEST' },
-  WEST: { x: -1, y: 0, left: 'SOUTH', right: 'NORTH' }
+const DIRECTIONS = {
+  NORTH: {
+    x: 0,
+    y: 1,
+    left: 'WEST',
+    right: 'EAST',
+  },
+  EAST: {
+    x: 1,
+    y: 0,
+    left: 'NORTH',
+    right: 'SOUTH',
+  },
+  SOUTH: {
+    x: 0,
+    y: -1,
+    left: 'EAST',
+    right: 'WEST',
+  },
+  WEST: {
+    x: -1,
+    y: 0,
+    left: 'SOUTH',
+    right: 'NORTH',
+  },
 };
 
 function Robot() {
@@ -38,7 +58,7 @@ function Robot() {
     const command = self[action.toLowerCase()];
     if (!command) {
       self._error(
-        `I don\'t understand the command "${action}", type "help" for a list of commands I understand`
+        `I don't understand the command "${action}", type "help" for a list of commands I understand`,
       );
       return;
     }
@@ -55,24 +75,20 @@ function Robot() {
    * @return {Boolean} - Returns true if the robot was placed
    */
   self.place = (posX, posY, facing) => {
-    facing = facing.toUpperCase();
+    const facingInput = facing.toUpperCase();
     if (!self._validatePosition(posX, posY)) {
-      self._error(
-        'You cannot place me off the table, type "help" to see the tables dimensions'
-      );
+      self._error('You cannot place me off the table, type "help" to see the tables dimensions');
       return false;
     }
 
-    if (typeof DIRECTIONS[facing] == 'undefined') {
-      self._error(
-        'That is an invalid direction, type "help" to see which directions I can face.'
-      );
+    if (typeof DIRECTIONS[facingInput] === 'undefined') {
+      self._error('That is an invalid direction, type "help" to see which directions I can face.');
       return false;
     }
 
     self.posX = parseInt(posX, 10);
     self.posY = parseInt(posY, 10);
-    self.facing = facing;
+    self.facing = facingInput;
     self.report();
 
     return true;
@@ -120,9 +136,7 @@ function Robot() {
     const newPosY = self.posY + DIRECTIONS[self.facing].y;
 
     if (!self._validatePosition(newPosX, newPosY)) {
-      self._error(
-        "I cannot move there, I would fall off! I'm too expensive to break."
-      );
+      self._error("I cannot move there, I would fall off! I'm too expensive to break.");
       return false;
     }
 
@@ -138,23 +152,16 @@ function Robot() {
       return;
     }
 
-    self._info(
-      'I am now at position (' +
-        self.posX +
-        ', ' +
-        self.posY +
-        ') and I am facing ' +
-        self.facing
-    );
+    self._info(`I am now at position (${self.posX}, ${self.posY}) and I am facing ${self.facing}`);
   };
 
   // Robot info handler
-  self._info = message => {
+  self._info = (message) => {
     self._speak('green', '', message);
   };
 
   // Robot error handler
-  self._error = message => {
+  self._error = (message) => {
     self._speak('red', 'The robot looks at you quizically', message);
   };
 
@@ -163,17 +170,11 @@ function Robot() {
     if (prefix) {
       console.log(colors.magenta(prefix));
     }
-    console.log(
-      colors[color].underline('TOY ROBOT SAYS: Beep boop - ' + message)
-    );
+    console.log(colors[color].underline(`TOY ROBOT SAYS: Beep boop - ${message}`));
   };
 
   self.off = () => {
-    self._speak(
-      'yellow',
-      'The robot smiles at you',
-      'Thanks for playing, bye for now!'
-    );
+    self._speak('yellow', 'The robot smiles at you', 'Thanks for playing, bye for now!');
     process.exit(0);
   };
 
@@ -199,9 +200,7 @@ function Robot() {
    * Check if the robot has been placed
    * @return {Boolean} - Returns true if the robot is placed on the grid
    */
-  self._hasPlaced = () => {
-    return self.posX !== null && self.posY !== null && self.facing !== null;
-  };
+  self._hasPlaced = () => self.posX !== null && self.posY !== null && self.facing !== null;
 
   return self;
 }

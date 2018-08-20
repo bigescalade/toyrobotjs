@@ -1,8 +1,10 @@
-const Robot = require('../index');
+/* eslint-env node, mocha */
+
 const should = require('should');
+const Robot = require('../index');
 
 describe('Robot: place', () => {
-  it('should place the robot at the position given', done => {
+  it('should place the robot at the position given', (done) => {
     const robot = new Robot();
     robot.place(1, 2, 'NORTH').should.equal(true);
 
@@ -12,7 +14,7 @@ describe('Robot: place', () => {
     done();
   });
 
-  it('should not place the robot, X position is out of bounds', done => {
+  it('should not place the robot, X position is out of bounds', (done) => {
     const robot = new Robot();
     robot.place(8, 0, 'NORTH').should.not.equal(true);
 
@@ -22,7 +24,7 @@ describe('Robot: place', () => {
     done();
   });
 
-  it('should not place the robot, Y position is out of bounds', done => {
+  it('should not place the robot, Y position is out of bounds', (done) => {
     const robot = new Robot();
     robot.place(0, 8, 'NORTH').should.not.equal(true);
 
@@ -32,7 +34,7 @@ describe('Robot: place', () => {
     done();
   });
 
-  it('should not place the robot, facing direction is invalid', done => {
+  it('should not place the robot, facing direction is invalid', (done) => {
     const robot = new Robot();
     robot.place(1, 2, 'SOUTHWEST').should.not.equal(true);
 
