@@ -1,30 +1,46 @@
-# toyrobotjs
+# Title & Description
 
-### Requirements
+## toyrobotjs
 
-NodeJS version 10 or above
+The classic coding test. A toy robot that can be placed and move around a 5x5 grid.
 
-### Getting started
+# Table of Contents
 
-Clone the repository
-Inside the root folder, run the following commands:
+1. [Environments](#environments)
+2. [System Dependencies & Configuration](#system-dependencies-&-configuration)
+3. [Application Installation Instructions](#application-installation-instructions)
+4. [Operating Instructions](#operating-instructions)
+5. [Testing Instructions](#testing-instructions)
+6. [Overview](#overview)
+7. [Discussion](#discussion)
+8. [License](#license)
+9. [Contributing](#contributing)
 
-```
-npm install
-npm start
-```
+# Environments
 
-Then follow the instructions in the terminal.
+NodeJS > 10
 
-### Tests
+# System Dependencies & Configuration
 
-Inside the root folder, run the following command:
+1. Clone this repository
+2. Install dependencies
 
-```
-npm test
-```
+- Run `nvm use` in terminal from project root
 
-### About
+# Application Installation Instructions
+
+- Run `npm install` in terminal from project root
+
+# Operating Instructions
+
+- Run `npm start` in terminal from project root
+- Type `help` for instructions
+
+# Testing Instructions
+
+- Run `npm test` in terminal from project root
+
+# Overview
 
 This is a node application is a simulation of a toy robot moving on a square tabletop, of dimensions 5 units x 5 units.
 
@@ -53,3 +69,15 @@ Rules of the application:
 - MOVE will move the toy robot one unit forward in the direction it is currently facing.
 
 - LEFT and RIGHT will rotate the robot 90 degrees in the specified direction without changing the position of the robot.
+
+# Discussion
+
+Written while I was learning ES6, so there is a mishmash of ES5 and ES6 syntax.
+
+# License
+
+N/A
+
+# Contributing
+
+N/A
